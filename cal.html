@@ -1,0 +1,115 @@
+<style>
+html{
+    height:100%;
+}
+body{
+    margin:70px ;
+    background-image: url("./back01.jpg") ;    
+    background-repeat:no-repeat;    
+    background-attachment: fixed;
+    background-position:center;
+    background-size: cover;
+
+    
+}
+p{
+    text-align:right;
+    vertical-align: middle;
+    width:500px;
+    height:150px;
+    font-size: 120px;
+    border-style:outset;
+    margin: 0 auto;
+    border-radius: 25px 25px 0px 0px;
+    font-family: 'consolas';
+    color:#FFFFFF;
+    padding-left: 10px;
+    padding-right: 30px;
+    box-sizing: border-box;
+    border-style:inset;
+    background:rgba(87, 80, 80, 0.3);
+}
+
+
+table{
+    width:500px;
+    height:750px;
+    text-align: center;
+    vertical-align: middle;
+    color: #FFFFFF;
+    font-size: 75px;
+    margin: 0 auto;
+    background: rgba(27, 24, 24, 0.5);
+    padding:2px;
+    font-family: 'consolas';
+    border-radius: 0 0 10px 10px;
+    border-style:solid;
+}
+td{
+    background:rgba(87, 80, 80, 0.5); 
+}
+.fn{
+    color:rgba(243, 71, 71, 0.8);
+    background:rgba(119, 116, 116, 0.5);
+}
+/*  讓td有按鍵的浮出感
+    td{ 
+    border-style:outset;
+    border-bottom-color: rgba(243, 71, 71, 0.4)
+}*/
+</style>
+
+
+
+
+
+
+<p id="input">0</p>
+<table >
+    <tr>
+        <td class="fn">C</td>
+        <td class="fn">/</td>
+        <td class="fn">*</td>
+        <td class="fn">-</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td class="fn" rowspan="2">+</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>        
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td
+        ><td class="fn" rowspan="2">=</td>
+    </tr>
+    <tr>
+        
+        <td colspan="2">0</td>
+        <td>.</td>
+        
+    </tr>
+</table>
+<script>
+    const input = document.getElementById("input");
+    const td = document.getElementsByTagName("td");
+    for(let i=0;i<td.length;i++){   //i<td.length將i全部去跑迴圈;
+        td[i].onclick = function(){            
+			console.log( this.innerText );
+			if( this.innerText == "C" )			input.innerText = "0";
+			else if( this.innerText == "=" )	input.innerText = eval(input.innerText);
+            else if(input.innerText == "0" && this.innerText == ".")input.innerText = "0.";//讓第一次輸入小數點不會沒有0，但非整數相加還是有問題
+			else{                
+                if(input.innerText == "0")	input.innerText = this.innerText;				
+				else	input.insertAdjacentHTML("beforeend", this.innerText);
+			}
+            
+		}
+	}
+</script>
